@@ -1,37 +1,170 @@
-import { watchFile, unwatchFile } from "fs"
-import chalk from "chalk"
-import { fileURLToPath } from "url"
+import { watchFile, unwatchFile } from 'fs' 
+import chalk from 'chalk'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+import cheerio from 'cheerio'
+import fetch from 'node-fetch'
+import axios from 'axios'
+import moment from 'moment-timezone' 
 
-global.botNumber = ""
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.owner = ["51994884471"]
+//BETA: Si quiere evitar escribir el número que será bot en la consola, agregué desde aquí entonces:
+//Sólo aplica para opción 2 (ser bot con código de texto de 8 digitos)
+global.botNumber = '' //Ejemplo: 51994884471
 
-global.botname = '🕸 PedroBot'
-global.namebot = '🥗 PedroBot'
-global.bot = 'SakuraBot'
-global.packname = '🐸 Pedro𝗕𝗼𝘁-𝗠𝗗'
-global.wm = '🌿 Pedro𝘽𝙤𝙩-𝙈𝘿'
-global.author = '🥗 DevPedro'
-global.dev = '© Pᴏᴡᴇʀᴇᴅ Bʏ DᴇvPedro.'
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.banner = 'https://stellarwa.xyz/files/1757377941018.jpeg'
-global.icon = 'https://stellarwa.xyz/files/1757378468505.jpeg'
-global.currency = 'CryptoCoins'
-global.sessions = 'sessions/session-bot'
-global.jadi = 'sessions/session-sub'
+global.owner = [
+// <-- Número @s.whatsapp.net -->
+  ['51994884471', '⟆⃝༉⃟⸙ ᯽ PedroBot ⌗⚙️࿐', true],
+  ['51994884471', '⏤͟͞ू⃪ ፝͜⁞𝘿𝙞𝙤𝙣𝙚𝙞𝙗𝙞-ʳⁱᵖ ִֶ ࣪˖ ִֶָ🐇་༘', true],
 
-global.api = { 
-url: 'https://api.stellarwa.xyz',
-key: 'Diamond'
+// <-- Número @lid -->
+  ['51994884471', 'Pedro', true],
+  ['51994884471', 'Bot', true]
+];
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.mods = []
+global.suittag = ['51994884471']
+global.prems = []
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.16'
+global.languaje = 'Español'
+global.vs = '2.2.0'
+global.nameqr = 'PedroBot'
+global.namebot = 'ᯓ★ 𝑬𝒍𝒍𝒆𝒏 𝑱𝒐𝒆 𝑩𝒐𝒕 ִֶָ ࣪ ִֶָ🪽་༘࿐'
+global.Ellensessions = 'PedroSessions'
+global.jadi = 'PedroJadiBots'
+global.EllenJadibts = true
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.fkontak = {
+	key: {
+		participant: '0@s.whatsapp.net',
+		remoteJid: 'status@broadcast'
+	},
+	message: {
+		contactMessage: {
+			displayName: `Pedro-Bot`,
+			vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;Pedro-Bot;;;\nFN:Pedro-Bot\nitem1.TEL;waid=1234567890:1234567890\nitem1.X-ABLabel:Bot\nEND:VCARD`
+		}
+	}
+};
+
+// Define APIKeys como un objeto vacío para evitar el segundo error.
+// Esto es necesario aunque no uses API keys.
+global.APIKeys = {};
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.packname = '🦈⟶꯭̽𝑬𝒍𝒍𝒆𝒏 ꯭𝑱𝒐𝒆͙𝆭͢͟⎯̽―̥ 𝑺𝒉𝒂𝒓𝒌 𝑸𝒖𝒆𝒆𝒏'
+global.botname = '⏤͟͟͞͞⸙ְ̻࠭🦈ᩙ 𝙀𝙡𝙡𝙚𝙣 𝙅𝙤𝙚 𝘽𝙤𝙩 𝙈𝘿 𑂘⃘۪〬🫐ᩙ⸙ְ̻࠭'
+global.wm = '🌹⟶꯭̽𝐄𝐥𝐥𝐞᪱͢𝐧 ͞ ̵𝆭⎯꯭̽𝐉𝐨࡙ͥ͞𝐞ͣ͟ 𝐁𝐨࡙ͫ𝐭꯭͠⎯̽―̥ 𝐌𝐃 🌹'
+global.author = '𐔌 𝗡𝗲𝘃𝗶-𝗗𝗲𝘃 ❝ 𝗠𝗮𝗱𝗲 𝗪𝗶𝘁𝗵 𝗟𝗼𝘃𝗲 ❞ 𓆩 ͡꒱'
+global.dev = '⚙️ ⌬ 𝙲𝚞𝚜𝚝𝚘𝚖 𝙼𝚘𝚍𝚜 𝙱𝚢 𐔌𝚗𝚎𝚟𝚒-𝚍𝚎𝚟 💻🛠️'
+global.textbot = '⏤͟͞ू⃪ 𝑬𝒍𝒍𝒆𝒏-𝑱𝒐𝒆-𝑩𝒐𝒕🌸⃝𖤐 • 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 ⁿᵉᵛⁱ⁻ᵈᵉᵛ'
+global.etiqueta = 'ˑ 𓈒 𐔌 n͙e͙v͙i͙-d͙e͙v͙ ͡꒱ ۫'
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.moneda = 'Denique'
+global.welcom1 = '❍ Edita Con El Comando setwelcome'
+global.welcom2 = '❍ Edita Con El Comando setbye'
+global.banner = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1747289219876.jpeg'
+global.avatar = 'https://qu.ax/RYjEw.jpeg'
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.gp1 = 'https://chat.whatsapp.com/Jbi0UN57afA7rN8RyvqwDX'
+global.comunidad1 = 'https://chat.whatsapp.com/Jbi0UN57afA7rN8RyvqwDX'
+global.channel = 'https://whatsapp.com/channel/0029Vb6pxnHJf05UZAFuVX2P'
+global.channel2 = 'https://whatsapp.com/channel/0029Vb6pxnHJf05UZAFuVX2P'
+global.md = 'https://github.com/Pedro18ff/PEDROBOT1'
+global.correo = 'nevijose4@gmail.com'
+global.cn ='https://whatsapp.com/channel/0029Vb6pxnHJf05UZAFuVX2P';
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.catalogo = fs.readFileSync('./src/catalogo.jpg');
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: packname, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+global.ch = {
+ch1: '120363335626706839@newsletter',
 }
 
-global.my = {
-  ch: '120363420992828502@newsletter',
-}
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-const file = fileURLToPath(import.meta.url)
+global.cheerio = cheerio
+global.fs = fs
+global.fetch = fetch
+global.axios = axios
+global.moment = moment   
+
+global.rpg = {
+  emoticon(string) {
+    string = string.toLowerCase();
+    const emot = {
+      level: '🌟 Nivel',
+      coin: '💸 Coin',
+      exp: '✨ Experiencia',
+      bank: '🏦 Banco',
+      diamond: '💎 Diamante',
+      health: '❤️ Salud',
+      kyubi: '🌀 Magia',
+      joincount: '💰 Token',
+      emerald: '♦️ Esmeralda',
+      stamina: '⚡ Energía',
+      role: '⚜️ Rango',
+      premium: '🎟️ Premium',
+      pointxp: '📧 Puntos Exp',
+      gold: '👑 Oro',
+      iron: '⛓️ Hierro',
+      coal: '🌑 Carbón',
+      stone: '🪨 Piedra',
+      potion: '🥤 Poción',
+    };
+    const results = Object.keys(emot).map((v) => [v, new RegExp(v, 'gi')]).filter((v) => v[1].test(string));
+    if (!results.length) return '';
+    else return emot[results[0][0]];
+  }};
+global.rpgg = { 
+  emoticon(string) {
+    string = string.toLowerCase();
+    const emott = {
+      level: '🌟',
+      coin: '💸',
+      exp: '✨',
+      bank: '🏦',
+      diamond: '💎',
+      health: '❤️',
+      kyubi: '🌀',
+      joincount: '💰',
+      emerald: '♦️',
+      stamina: '⚡',
+      role: '⚜️',
+      premium: '🎟️',
+      pointxp: '📧',
+      gold: '👑',
+      iron: '⛓️',
+      coal: '🌑',
+      stone: '🪨',
+      potion: '🥤',
+    };
+    const results = Object.keys(emott).map((v) => [v, new RegExp(v, 'gi')]).filter((v) => v[1].test(string));
+    if (!results.length) return '';
+    else return emott[results[0][0]];
+  }};  
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
-  console.log(chalk.redBright(`Update "${file}"`))
+  console.log(chalk.redBright("Update 'settings.js'"))
   import(`${file}?update=${Date.now()}`)
 })

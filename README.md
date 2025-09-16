@@ -1,123 +1,179 @@
-> [!IMPORTANT]
-> **Este proyecto está en constante evolución. Estamos comprometidos en ofrecer a nuestra comunidad un Bot increíble. Te invitamos a instalarlo y para estar al tanto de todas las novedades. [¡Únete a nuestro nuevo canal!](https://stellarw.xyz/channel)**
 
-<p align="center"> 
-<img src="https://stellarwa.xyz/files/1757603651149.jpeg" alt="SakuraBot-MD" style="width: 75%; height: auto; max-width: 100px;">
+<h1 align="center">🦈--Ellen Joe Bot MD--🦈</h1>
 
-<p align="center"> 
-<a href="#"><img title="SakuraBot-MD" src="https://img.shields.io/badge/¡Disfruta de un Bot totalmente gratuito, con múltiples funciones y de código abierto! -purple?colorA=%239b33b0&colorB=%231c007b&style=for-the-badge"></a> 
+<p align="center">
+  <img src="https://github.com/nevi-dev/nevi-dev/blob/main/xd/ezgif.com-video-to-gif-converter.gif?raw=true" alt="Ellen Joe Bot MD Preview" />
 </p>
 
 ---
 
-## 🪻 Descripción 
-
-Pedro Bot es un bot de WhatsApp multifuncional basado en `baileys`. Este bot ofrece una variedad de características para mejorar tu experiencia en WhatsApp.
-
----
-
-## 🪻 Características
-
-- Respuestas automáticas
-- Gestión de grupos
-- Juegos interactivos
-- Integración con APIs externas
-
----
-
-## Instalación por Termux
-> [!IMPORTANT]
-> **No garantizamos un funcionamiento perfecto en Termux, aunque trabajamos constantemente para asegurar una buena compatibilidad. Si experimentas lentitud o errores, por favor envía una solicitud con la evidencia correspondiente para que nuestro equipo pueda solucionarlo. Si el problema persiste, te recomendamos considerar los servicios de alojamiento de bots de nuestros patrocinadores.**
+## 💫 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐜𝐢o𝐧 𝐝𝐞𝐥 𝐁𝐨𝐭
 
 <details>
-  <summary><b>🍄 Instalación Manual</b></summary>
+  <summary><b>☁️ 𝐀𝐜𝐥𝐚𝐫𝐚𝐜𝐢o𝐧 𝐥𝐞𝐠𝐚𝐥</b></summary>
 
-> *Comandos para instalar de forma manual*
+> 🚫 **Este proyecto NO está afiliado a WhatsApp ni WhatsApp LLC.**  
+> un bot hecho 100% independiente, la base del bot es de Yuki Suou. bot personalizado por **nevi-dev**.
+</details>
+
+---
+
+## 🧩 𝐅𝐮𝐧𝐜𝐢𝐨𝐧𝐞𝐬 𝐝𝐞 Ellen
+
+<details>
+  <summary><b>🦈𝐓𝐨𝐝𝐨 𝐥𝐨 𝐪𝐮𝐞 𝐩𝐮𝐞𝐝𝐞 𝐡𝐚𝐜𝐞𝐫</b></summary>
+
+- 👥 Gestión de grupos (bienvenidas, reglas, etc.)
+- 🛡️ Antidelete, antilink, antispam
+- 🎉 Mensaje de bienvenida personalizado
+- 🎮 Juegos: tictactoe, piedra papel o tijera, etc.
+- 🤖 Chatbots: Simsimi y autoresponder AI
+- 🎨 Stickers desde imágenes, videos, GIFs o enlaces
+- 🔎 Búsquedas rápidas en Google
+- 🧙 Juego RPG integrado
+- 🎵 Descarga de música y videos desde YouTube
+- 🔧 ¡Y muchas otras funciones!
+
+</details>
+
+---
+
+## 🛠️ 𝐈𝐧𝐬𝐭𝐚𝐥𝐚𝐜𝐢o𝐧
+
+### **`🤖 𝐇𝐚𝐳 𝐜𝐥𝐢𝐜𝐤 𝐞𝐧 𝐥𝐚 𝐢𝐦𝐚𝐠𝐞𝐧 𝐩𝐚𝐫𝐚 𝐝𝐞𝐬𝐜𝐚𝐫𝐠𝐚𝐫 𝐭𝐞𝐫𝐦𝐮𝐱 ⏱️`**
+<a
+href="https://www.mediafire.com/file/llugt4zgj7g3n3u/com.termux_1020.apk/file"><img src="https://qu.ax/finc.jpg" height="125px"></a> 
+
+### 📱 Instalación en **Termux**
+
+<details>
+  <summary><b>🔰 Ver comandos de instalación</b></summary>
+
 ```bash
 termux-setup-storage
 ```
+
 ```bash
 apt update && apt upgrade && pkg install -y git nodejs ffmpeg imagemagick yarn
 ```
+
 ```bash
-git clone https://github.com/Pedro18ff/PedroBot && cd SakuraBot-MD
+git clone https://github.com/nevi-dev/Ellen-Joe-Bot-MD && cd Ellen-Joe-Bot-MD
 ```
+
 ```bash
-yarn install
+yarn install && npm install && npm update
 ```
-```bash
-npm install
-```
+
 ```bash
 npm start
 ```
-> *Si aparece **(Y/I/N/O/D/Z) [default=N] ?** use la letra **"y"** y luego **"ENTER"** para continuar con la instalación.*
-</details>
 
-<details>
-  <summary><b>🪻 Comandos para mantener más tiempo activo el Bot</b></summary>
+> Cuando veas: (Y/I/N/O/D/Z) [default=N]  
+> Escribe **"y"** y presiona **ENTER**
 
-> *Ejecutar estos comandos dentro de la carpeta SakuraBot-MD*
-```bash
-termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 save && pm2 logs 
-``` 
-#### Opciones Disponibles
-> *Esto eliminará todo el historial que hayas establecido con PM2:*
-```bash 
-pm2 delete index
-``` 
-> *Si tienes cerrado Termux y quiere ver de nuevo la ejecución use:*
-```bash 
-pm2 logs 
-``` 
-> *Si desea detener la ejecución de Termux use:*
-```bash 
-pm2 stop index
-``` 
-> *Si desea iniciar de nuevo la ejecución de Termux use:*
-```bash 
-pm2 start index
-```
----- 
-### En caso de detenerse
-> _Si despues que ya instalastes tu bot y termux te salta en blanco, se fue tu internet o reiniciaste tu celular, solo realizaras estos pasos:_
-```bash
-cd && cd SakuraBot-MD && npm start
-```
-----
-### Obtener nuevo código QR 
-> *Detén el bot, haz click en el símbolo (ctrl) [default=z] usar la letra "z" + "ENTER" hasta que salga algo verdes similar a: `SakuraBot-MD $`*
-> **Escribe los siguientes comando uno x uno :**
-```bash 
-cd && cd SakuraBot-MD && rm -rf sessions/session-bot && npm run qr
-```
-----
-### Obtener nuevo código de teléfono 
-```bash 
-cd && cd SakuraBot-MD && rm -rf sessions/session-bot && npm run code
-```
-</details>
-
-<details>
-<summary><b>🫛 Actualizar PedroBot</b></summary>
-
-> **Utiliza esta opción únicamente si deseas actualizar a la última versión de SakuraBot. Hemos implementado un método ingenioso mediante comandos para realizar la actualización, pero ten en cuenta que al usarla se eliminarán todos los archivos de la versión actual y se reemplazarán con los de la nueva versión. Solo se conservará la base de datos, por lo que será necesario volver a vincular el Bot.**  
-
-**Comandos para actualizar SakuraBot-MD de forma automática**
-
-```bash
-grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https://raw.githubusercontent.com/DevAlexJs/SakuraBot-MD/master/update.sh | bash 
-```
-#### Para que no pierda su progreso en SakuraBot, estos comandos realizarán un respaldo de su `datos.json` y se agregará a la versión más reciente.
-> *Estos comandos solo funcionan para TERMUX, REPLIT, LINUX*
 </details>
 
 ---
 
-### 🫛 Colaboradores
-<a href="https://github.com/DevAlexJs/SakuraBot-MD/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=DevAlexJs/SakuraBot-MD" /> 
-</a> 
+### **`🖥️ 𝐇𝐚𝐳 𝐜𝐥𝐢𝐜 𝐞𝐧 𝐥𝐚 𝐢𝐦𝐚𝐠𝐞𝐧 𝐩𝐚𝐫𝐚 𝐝𝐞𝐬𝐜𝐚𝐫𝐠𝐚𝐫 𝐜𝐥𝐨𝐮𝐝 𝐬𝐡𝐞𝐥𝐥 ✨`**
+<a
+href="https://www.mediafire.com/file/bp2l6cci2p30hjv/Cloud+Shell_1.apk/file"><img src="https://qu.ax/iSvfx.webp" height="125px"></a> 
 
-### 🌾 Autor Del Proyecto
-[![Alexius](https://github.com/DevAlexJs.png?size=100)](https://github.com/DevAlexJs) 
+### ☁️ Instalación en **Cloud Shell**
+
+<details>
+  <summary><b>🚀 Ver pasos para Cloud Shell</b></summary>
+
+```bash
+git clone git clone https://github.com/nevi-dev/Ellen-Joe-Bot-MD && cd Ellen-Joe-Bot-MD
+```
+
+```bash
+yarn install && npm install
+```
+
+```bash
+npm start
+```
+
+> ✔️ Asegúrate de que tu Cloud Shell tenga Node.js instalado.
+</details>
+
+---
+
+### ♻️ ¿El bot se detuvo?
+
+<details>
+  <summary><b>🔁 Cómo reiniciarlo en Termux</b></summary>
+
+```bash
+cd Ellen-Joe-Bot-MD && npm start
+```
+
+</details>
+
+---
+
+### 🧑‍💻 ¿Quieres poner tu número como owner?
+
+<details>
+  <summary><b>🔑 edita el archivo y Agrega tu número como Owner</b></summary>
+
+```bash
+cd Ellen-Joe-Bot-MD
+```
+
+```bash
+nano settings.js
+```
+
+> En el archivo `settings.js`, busca la sección `owner` y coloca tu número ahí.
+
+</details>
+
+---
+
+## 🌐 𝐄𝐧𝐥𝐚𝐜𝐞𝐬 u𝐭𝐢𝐥𝐞𝐬
+
+<details>
+  <summary><b>👥 Grupos Oficiales</b></summary>
+
+- 📢 [Canal Oficial](https://whatsapp.com/channel/0029VakLbM76mYPPFL0IFI3P)
+- 🌐 [Comunidad Global](https://chat.whatsapp.com/K2CPrOTksiA36SW6k41yuR)
+
+</details>
+
+<details>
+  <summary><b>📞 Contacto</b></summary>
+
+- 📱 WhatsApp: 18096758983
+
+</details>
+
+---
+
+## **`🩵 AKIRAX HOST🩵`**
+<a href="https://home.akirax.net"><img src="https://qu.ax/bZYxO.jpg" height="100px"></a>
+</details>
+</details>
+ <summary><b>:paperclip: Enlaces Importantes</b></summary>
+
+- **Dash:** [`Aquí`](https://home.akirax.net)
+- **Panel:** [`Aquí`](https://console.akirax.net)
+
+---
+
+## 👑 𝐂𝐫𝐞𝐚𝐝𝐨𝐫 𝐝𝐞 Ellen Joe
+
+
+<a href="https://github.com/nevi-dev"><img src="https://github.com/nevi-dev.png" width="250" height="250" alt="Nevi"/></a>
+
+---
+
+### **🌺` Colaboradores Especiales `🌟**
+<a href="https://github.com/Dioneibi-rip" style="display:inline-block; text-decoration: none;">
+    <img src="https://github.com/Dioneibi-rip.png" width="130" height="130" alt="Dioneibi" style="border-radius: 50%;"/>
+</a>
+
+---

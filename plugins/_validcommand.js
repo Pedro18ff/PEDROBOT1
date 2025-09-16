@@ -1,10 +1,10 @@
-export async function before(m, { groupMetadata }) {
-  if (!m.text || !globalThis.prefix.test(m.text)) {
+export async function before(m) {
+  if (!m.text || !global.prefix.test(m.text)) {
     return;
   }
 
-  const usedPrefix = globalThis.prefix.exec(m.text)[0];
-  const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase(); 
+  const usedPrefix = global.prefix.exec(m.text)[0];
+  const command = m.text.slice(usedPrefix.length).trim().split(' ')[0].toLowerCase();
 
   const validCommand = (command, plugins) => {
     for (let plugin of Object.values(plugins)) {
@@ -15,45 +15,27 @@ export async function before(m, { groupMetadata }) {
     return false;
   };
 
-
-  let chat = globalThis.db.data.chats[m.chat];
-  let id = this.user.jid;
-  let settings = globalThis.db.data.settings[id];
-  let owner = [...globalThis.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
-
-  if (chat.adminonly) return;
-  if (settings.self) return;
   if (!command) return;
-  if (command === 'mute') return;
-  if (chat.bannedGrupo && !owner) return
 
-/*try {
-let chtxt = ` ֯　ׅ🫗ֶ֟ㅤ *Usuario ›* ${m.pushName}
-
- ׄ 🎋 ׅ り *Comando usado ›* ${command}
- ׄ 🌾 ׅ り *Visita ›* api.stellarwa.xyz
- ׄ 🌿 ׅ り *Bot ›* ${wm}
- ׄ 🥗 ׅ り *Versión del bot ›* ^0.0.9`
-
-let ppch = await this.profilePictureUrl(m.sender, 'image').catch(_ => "https://stellarwa.xyz/files/1757206448404.jpeg")
-global.conn.sendMessage(my.ch5, { text: chtxt,
-contextInfo: { 
-externalAdReply: {
-title: "🕸 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗖𝗜𝗢́𝗡 🕸",
-body: '🐼 ¡Nuevo comando usado!',
-thumbnailUrl: ppch,
-sourceUrl: redes,
-mediaType: 2,
-showAdAttribution: false,
-renderLargerThumbnail: false
-}}}, { quoted: null }) 
-} catch (e) {
-console.log(`[ 🐼  ]  Error al enviar el mensaje al canal.\n[ 🕸  ]  ${e}`)
-}*/
-
-  if (validCommand(command, globalThis.plugins)) {
+  if (command === "bot") {
+    return;
+    }
+  if (validCommand(command, global.plugins)) {
+    let chat = global.db.data.chats[m.chat];
+    let user = global.db.data.users[m.sender];
+    
+    if (chat.isBanned) {
+      const avisoDesactivado = `《✦》El bot *${botname}* está desactivado en este grupo.\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`;
+      await m.reply(avisoDesactivado);
+      return;
+    }
+    
+    if (!user.commands) {
+      user.commands = 0;
+    }
+    user.commands += 1;
   } else {
-    const comando = command;
-    await m.reply(`🕸 El comando *${comando}* no existe.\n> Usa *${usedPrefix}help* para ver la lista de comandos disponibles.`);
+    const comando = m.text.trim().split(' ')[0];
+    await m.reply(`《✦》El comando *${comando}* no existe.\nPara ver la lista de comandos usa:\n» *#help*`);
   }
 }
